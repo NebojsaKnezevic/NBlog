@@ -9,7 +9,7 @@ interface IRegisterProps{
 
 const Register: React.FC<IRegisterProps> = () => {
     const [state, action, isPending] = useActionState(register, undefined);
-    console.log(isPending)
+    // console.log(isPending)
     return(
         <div className="container w-1/2">
             <h1 className="title">Register</h1>
@@ -40,7 +40,7 @@ const Register: React.FC<IRegisterProps> = () => {
                     <button className="btn-primary" disabled={isPending}>
                         {isPending ? "Loading" : "Register"}
                     </button>
-                    <Link href={"/"} className="text-link">or login here</Link>
+                    <Link href={"/login"} className="text-link">or login here</Link>
                 </div>
             </form>
         </div>
