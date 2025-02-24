@@ -25,3 +25,15 @@ export const RegisterFormSchema = z
         }
     });
 
+
+export const LoginFormSchema = z
+.object({
+    email: z.string().email({ message: "Please enter a valid email." }).trim(),
+    password: z
+        .string()
+        .min(1, { message: "Password cannot be empty." })
+        .min(5, { message: "Password must be at least 5 characters long." }) 
+        .trim(),
+    // server: z.string()
+})
+
