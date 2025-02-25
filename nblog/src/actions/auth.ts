@@ -31,6 +31,7 @@ interface LoginResponse {
     password: FormDataEntryValue | null;
 }
 
+
 //Zod validation
 export const register = async(state: any, formData: FormData): Promise<RegisterResponse> => {
 

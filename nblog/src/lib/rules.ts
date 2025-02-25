@@ -37,3 +37,13 @@ export const LoginFormSchema = z
     // server: z.string()
 })
 
+
+export const BlogPostoSchema = z
+.object({
+    title: z.string().min(1,{message: 'Title field is required'})
+    .max(100, {message: 'Title cant be mjore then 100 characters'})
+    .trim(),
+
+    content: z.string().min(1,{message: 'Content field is required'})
+    .trim()
+})

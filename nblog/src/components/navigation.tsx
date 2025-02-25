@@ -7,16 +7,17 @@ interface INavigationProps { }
 const Navigation: React.FC<INavigationProps> = async () => {
 
     const authUser = await getAuthUser();
-    console.log(authUser)
+    // console.log(authUser)
 
     return (
         <nav>
             <NavLink href="/" label="HOME" />
             {authUser ?
                 <div>
+                    <NavLink href="/posts/create" label="NEW POST" />
                     <NavLink href="/dashboard" label="DASHBOARD" />
                     <form action={logout}>
-                        <button className="nav-link">Logout</button>
+                        <button className="nav-link">LOGOUT</button>
                     </form>
                 </div> :
                 <div>
