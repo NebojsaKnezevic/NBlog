@@ -5,6 +5,7 @@ import { getCollection } from "@/lib/db"
 import { BlogPostoSchema } from "@/lib/rules"
 import { error } from "console"
 import { ObjectId } from "mongodb"
+import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 
@@ -154,4 +155,24 @@ export const editPost = async (state: any, formData: FormData): Promise<ICreateU
         title: "",
         content: ""
     }
+}
+
+
+export const deletePost = async ( formData: FormData)=> {
+    //check if user is signed in
+    const user = await getAuthUser()
+    if (!user) {
+        return redirect("/")
+    }
+
+    const blogId = formData.get('postId') 
+     //find the object
+     const postsCollection = await getCollection('posts')
+     const post = await postsCollection?.findOne({_id: ObjectId.createFromHexString(blogId as string)})
+
+     //delete
+
+     postsCollection?.findOneAndDelete({_id:  ObjectId.createFromHexString(blogId as string)})
+
+    revalidatePath("/dashboard")
 }
